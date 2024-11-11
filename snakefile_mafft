@@ -1,0 +1,11 @@
+OGG, = glob_wildcards("{ogg}.fas")
+THREADS = 1
+
+rule all:
+    input: expand("{ogg}.aln",ogg=OGG)
+
+rule mafft:
+    input: "{ogg}.fas"
+    output: "{ogg}.aln"
+    threads: 1
+    shell: "mafft {input} > {output}"
